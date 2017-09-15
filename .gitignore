@@ -1,0 +1,9 @@
+*~
+*.pyc
+*egg-info*
+\.idea/inspectionProfiles/
+\.idea/
+*.out
+*visualization*
+*DS_Store*
+*.pdf

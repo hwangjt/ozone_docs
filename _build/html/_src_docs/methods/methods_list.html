@@ -1,0 +1,488 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>List of methods &#8212; ozone 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Convergence order" href="order_plot.html" />
+    <link rel="prev" title="Integration methods" href="../methods.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="order_plot.html" title="Convergence order"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../methods.html" title="Integration methods"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">ozone 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../methods.html" accesskey="U">Integration methods</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../methods.html"
+                        title="previous chapter">Integration methods</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="order_plot.html"
+                        title="next chapter">Convergence order</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/_src_docs/methods/methods_list.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="list-of-methods">
+<h1>List of methods<a class="headerlink" href="#list-of-methods" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="colwidths-given docutils" id="id1">
+<caption><span class="caption-text">List of integration methods</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method name</th>
+<th class="head">Order</th>
+<th class="head">Num. stages</th>
+<th class="head">Step vec. size</th>
+<th class="head">Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ForwardEuler</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>explicit</td>
+</tr>
+<tr class="row-odd"><td>ExplicitMidpoint</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>explicit</td>
+</tr>
+<tr class="row-even"><td>KuttaThirdOrder</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>explicit</td>
+</tr>
+<tr class="row-odd"><td>RK4</td>
+<td>4</td>
+<td>4</td>
+<td>1</td>
+<td>explicit</td>
+</tr>
+<tr class="row-even"><td>RK6</td>
+<td>6</td>
+<td>7</td>
+<td>1</td>
+<td>explicit</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>BackwardEuler</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>ImplicitMidpoint</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>Trapezoidal</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>GaussLegendre2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>GaussLegendre4</td>
+<td>4</td>
+<td>2</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>GaussLegendre6</td>
+<td>6</td>
+<td>3</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Lobatto2</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>Lobatto4</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>RadauI3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>RadauI5</td>
+<td>5</td>
+<td>3</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>RadauII3</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>RadauII5</td>
+<td>5</td>
+<td>3</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>AB2</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>explicit</td>
+</tr>
+<tr class="row-odd"><td>AB3</td>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+<td>explicit</td>
+</tr>
+<tr class="row-even"><td>AB4</td>
+<td>4</td>
+<td>1</td>
+<td>5</td>
+<td>explicit</td>
+</tr>
+<tr class="row-odd"><td>AB5</td>
+<td>5</td>
+<td>1</td>
+<td>6</td>
+<td>explicit</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>AM2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>AM3</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>AM4</td>
+<td>4</td>
+<td>1</td>
+<td>4</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>AM5</td>
+<td>5</td>
+<td>1</td>
+<td>5</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>ABalt2</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>explicit</td>
+</tr>
+<tr class="row-odd"><td>ABalt3</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>explicit</td>
+</tr>
+<tr class="row-even"><td>ABalt4</td>
+<td>4</td>
+<td>5</td>
+<td>4</td>
+<td>explicit</td>
+</tr>
+<tr class="row-odd"><td>ABalt5</td>
+<td>5</td>
+<td>6</td>
+<td>5</td>
+<td>explicit</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>AMalt3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>AMalt4</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>AMalt5</td>
+<td>5</td>
+<td>5</td>
+<td>4</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>BDF1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>BDF2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>BDF3</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>BDF4</td>
+<td>4</td>
+<td>1</td>
+<td>4</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>BDF5</td>
+<td>5</td>
+<td>1</td>
+<td>5</td>
+<td>implicit</td>
+</tr>
+<tr class="row-even"><td>BDF6</td>
+<td>6</td>
+<td>1</td>
+<td>6</td>
+<td>implicit</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>AdamsPEC2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>explicit</td>
+</tr>
+<tr class="row-odd"><td>AdamsPEC3</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+<td>explicit</td>
+</tr>
+<tr class="row-even"><td>AdamsPEC4</td>
+<td>4</td>
+<td>1</td>
+<td>4</td>
+<td>explicit</td>
+</tr>
+<tr class="row-odd"><td>AdamsPEC5</td>
+<td>5</td>
+<td>1</td>
+<td>5</td>
+<td>explicit</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>AdamsPECE2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>explicit</td>
+</tr>
+<tr class="row-even"><td>AdamsPECE3</td>
+<td>3</td>
+<td>2</td>
+<td>3</td>
+<td>explicit</td>
+</tr>
+<tr class="row-odd"><td>AdamsPECE4</td>
+<td>4</td>
+<td>2</td>
+<td>4</td>
+<td>explicit</td>
+</tr>
+<tr class="row-even"><td>AdamsPECE5</td>
+<td>5</td>
+<td>2</td>
+<td>5</td>
+<td>explicit</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="order_plot.html" title="Convergence order"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../methods.html" title="Integration methods"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">ozone 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../methods.html" >Integration methods</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, John T. Hwang.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
+    </div>
+  </body>
+</html>

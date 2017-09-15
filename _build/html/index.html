@@ -1,0 +1,188 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Ozone (O3): (O)pen-source (O)DE and (O)ptimal control solver &#8212; ozone 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started" href="_src_docs/getting_started.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="_src_docs/getting_started.html" title="Getting started"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">ozone 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Ozone (O3): (O)pen-source (O)DE and (O)ptimal control solver</a><ul>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="_src_docs/getting_started.html"
+                        title="next chapter">Getting started</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ozone-o3-o-pen-source-o-de-and-o-ptimal-control-solver">
+<h1>Ozone (O3): (O)pen-source (O)DE and (O)ptimal control solver<a class="headerlink" href="#ozone-o3-o-pen-source-o-de-and-o-ptimal-control-solver" title="Permalink to this headline">¶</a></h1>
+<p>Ozone is an open-source tool for solving ordinary differential equations (ODEs) and optimal control problems.
+It is designed to enable the integration of ODEs in gradient-based multidisciplinary design optimization (MDO) problems,
+where the ODE is a single component in the larger model and derivatives of the ODE integration process are required.
+Ozone can also be used for solving optimal control problems with direct transcription or indirect approaches.
+It is built on top of the <a class="reference external" href="https://github.com/openmdao/blue">OpenMDAO framework</a>, which is described and documented <a class="reference external" href="https://blue.readthedocs.io">here</a>.</p>
+<p>An ODE is of the form</p>
+<div class="math">
+\[\frac{\partial \textbf y}{\partial t} = \textbf f(t, \textbf y, \textbf x) , \qquad  \textbf y(t_0) = \textbf y_0\]</div>
+<p>where
+<span class="math">\(\textbf y\)</span> is the vector of <em>state variables</em> (the variable being integrated),
+<span class="math">\(t\)</span> is <em>time</em> (the independent variable),
+<span class="math">\(\textbf x\)</span> is the vector of <em>parameters</em> (an input to the ODE),
+<span class="math">\(\textbf f\)</span> is the <em>ODE function</em>,
+and
+<span class="math">\(\textbf y_0\)</span> is the vector of initial conditions.</p>
+<p>Ozone provides a large library of Runge&#8211;Kutta and linear multistep methods thanks to its use of a unified formulation called general linear methods.
+The list of methods can be found below.
+There are also 3 formulations for solving the ODE:
+time-marching,
+system-based (formulate the ODE equations as a nonlinear system),
+optimizer-based (formulate the ODE state variables and equations as design variables and constraints in an optimization problem).</p>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_src_docs/getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/getting_started/simple_ode.html">A simple ODE example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/getting_started/simple_oc.html">A simple optimal control example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_src_docs/api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/api/ode_function.html">ODEFunction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/api/ode_integrator.html">ODEIntegrator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_src_docs/interacting.html">Interacting with the integrator group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/interacting/specifying_times.html">Specifying times</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/interacting/specifying_ics.html">Specifying initial conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/interacting/specifying_parameters.html">Specifying parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_src_docs/methods.html">Integration methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/methods/methods_list.html">List of methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/methods/order_plot.html">Convergence order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/methods/order_check.html">Manually checking convergence order</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_src_docs/formulations.html">Formulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/formulations/timing_plot.html">Comparison between formulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="_src_docs/examples.html">Examples library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/examples/simple_homogeneous.html">Simple homogeneous ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/examples/simple_linear.html">Simple linear ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/examples/simple_nonlinear.html">Simple nonlinear ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/examples/projectile.html">Projectile dynamics ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/examples/two_d_orbit.html">2-D orbit ODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_src_docs/examples/three_d_orbit.html">3-D orbit ODE</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="_src_docs/getting_started.html" title="Getting started"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">ozone 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, John T. Hwang.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
+    </div>
+  </body>
+</html>

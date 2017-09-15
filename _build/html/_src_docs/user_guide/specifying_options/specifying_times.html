@@ -1,0 +1,257 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Specifying times &#8212; ozone 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Specifying initial conditions" href="specifying_ics.html" />
+    <link rel="prev" title="API for ODEIntegrator" href="../basics/ode_integrator.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="specifying_ics.html" title="Specifying initial conditions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../basics/ode_integrator.html" title="API for ODEIntegrator"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">ozone 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Specifying times</a><ul>
+<li><a class="reference internal" href="#absolute-times">1. Absolute times</a></li>
+<li><a class="reference internal" href="#normalized-times-with-fixed-initial-and-final-times">2. Normalized times with fixed initial and final times</a></li>
+<li><a class="reference internal" href="#normalized-times-with-variable-initial-and-final-times">3. Normalized times with variable initial and final times</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../basics/ode_integrator.html"
+                        title="previous chapter">API for ODEIntegrator</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="specifying_ics.html"
+                        title="next chapter">Specifying initial conditions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/_src_docs/user_guide/specifying_options/specifying_times.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="specifying-times">
+<h1>Specifying times<a class="headerlink" href="#specifying-times" title="Permalink to this headline">¶</a></h1>
+<p>When calling <code class="code docutils literal"><span class="pre">ODEIntegrator</span></code>, there are three general ways of specifying the integration times.</p>
+<div class="section" id="absolute-times">
+<h2>1. Absolute times<a class="headerlink" href="#absolute-times" title="Permalink to this headline">¶</a></h2>
+<p>The first way is to specify the actual times values instead of
+specifying the initial time, final time, and time spacing separately.
+This first way is the simplest approach and is sufficient if the initial and final times
+do not change during optimization.
+As shown below, we provide the <code class="code docutils literal"><span class="pre">times</span></code> argument when calling <code class="code docutils literal"><span class="pre">ODEIntegrator</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">openmdao.api</span> <span class="kn">import</span> <span class="n">Problem</span>
+
+<span class="kn">from</span> <span class="nn">ozone.api</span> <span class="kn">import</span> <span class="n">ODEIntegrator</span>
+<span class="kn">from</span> <span class="nn">ozone.doc_tests.ode_functions.getting_started_ode_function</span> \
+    <span class="kn">import</span> <span class="n">GettingStartedODEFunction</span>
+
+<span class="n">ode_function</span> <span class="o">=</span> <span class="n">GettingStartedODEFunction</span><span class="p">()</span>
+<span class="n">formulation</span> <span class="o">=</span> <span class="s1">&#39;solver-based&#39;</span>
+<span class="n">method_name</span> <span class="o">=</span> <span class="s1">&#39;RK4&#39;</span>
+<span class="n">initial_conditions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">}</span>
+
+<span class="c1"># Only times is passed in.</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+
+<span class="n">integrator</span> <span class="o">=</span> <span class="n">ODEIntegrator</span><span class="p">(</span><span class="n">ode_function</span><span class="p">,</span> <span class="n">formulation</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span>
+    <span class="n">times</span><span class="o">=</span><span class="n">times</span><span class="p">,</span> <span class="n">initial_conditions</span><span class="o">=</span><span class="n">initial_conditions</span><span class="p">)</span>
+
+<span class="n">prob</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">integrator</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">check</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">run_model</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prob</span><span class="p">[</span><span class="s1">&#39;times&#39;</span><span class="p">],</span> <span class="n">prob</span><span class="p">[</span><span class="s1">&#39;state:y&#39;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../../_images/specifying_times.png"><img alt="../../../_images/specifying_times.png" src="../../../_images/specifying_times.png" style="width: 512.0px; height: 384.0px;" /></a>
+</div>
+</div>
+<div class="section" id="normalized-times-with-fixed-initial-and-final-times">
+<h2>2. Normalized times with fixed initial and final times<a class="headerlink" href="#normalized-times-with-fixed-initial-and-final-times" title="Permalink to this headline">¶</a></h2>
+<p>Alternatively, we can specify the initial time, final time, and relative positions of the times as a vector.
+In this case, we provide the <code class="code docutils literal"><span class="pre">initial_time</span></code>, <code class="code docutils literal"><span class="pre">final_time</span></code>, and <code class="code docutils literal"><span class="pre">normalized_times</span></code>
+arguments when calling <code class="code docutils literal"><span class="pre">ODEIntegrator</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">openmdao.api</span> <span class="kn">import</span> <span class="n">Problem</span>
+
+<span class="kn">from</span> <span class="nn">ozone.api</span> <span class="kn">import</span> <span class="n">ODEIntegrator</span>
+<span class="kn">from</span> <span class="nn">ozone.doc_tests.ode_functions.getting_started_ode_function</span> \
+    <span class="kn">import</span> <span class="n">GettingStartedODEFunction</span>
+
+<span class="n">ode_function</span> <span class="o">=</span> <span class="n">GettingStartedODEFunction</span><span class="p">()</span>
+<span class="n">formulation</span> <span class="o">=</span> <span class="s1">&#39;solver-based&#39;</span>
+<span class="n">method_name</span> <span class="o">=</span> <span class="s1">&#39;RK4&#39;</span>
+<span class="n">initial_conditions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">}</span>
+
+<span class="c1"># Here, initial_time, final_time, and normalized_times are passed in.</span>
+<span class="n">initial_time</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">final_time</span> <span class="o">=</span> <span class="mf">3.</span>
+<span class="n">normalized_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+
+<span class="n">integrator</span> <span class="o">=</span> <span class="n">ODEIntegrator</span><span class="p">(</span><span class="n">ode_function</span><span class="p">,</span> <span class="n">formulation</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span>
+    <span class="n">initial_time</span><span class="o">=</span><span class="n">initial_time</span><span class="p">,</span> <span class="n">final_time</span><span class="o">=</span><span class="n">final_time</span><span class="p">,</span>
+    <span class="n">normalized_times</span><span class="o">=</span><span class="n">normalized_times</span><span class="p">,</span> <span class="n">initial_conditions</span><span class="o">=</span><span class="n">initial_conditions</span><span class="p">)</span>
+
+<span class="n">prob</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">integrator</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">check</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">run_model</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prob</span><span class="p">[</span><span class="s1">&#39;times&#39;</span><span class="p">],</span> <span class="n">prob</span><span class="p">[</span><span class="s1">&#39;state:y&#39;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../../_images/specifying_times.png"><img alt="../../../_images/specifying_times.png" src="../../../_images/specifying_times.png" style="width: 512.0px; height: 384.0px;" /></a>
+</div>
+</div>
+<div class="section" id="normalized-times-with-variable-initial-and-final-times">
+<h2>3. Normalized times with variable initial and final times<a class="headerlink" href="#normalized-times-with-variable-initial-and-final-times" title="Permalink to this headline">¶</a></h2>
+<p>If the initial and/or final time changes during optimization, we can connect one or both from
+an external component that computes the initial and/or final time as an output.
+Here is an example where both are connected externally.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">openmdao.api</span> <span class="kn">import</span> <span class="n">Problem</span><span class="p">,</span> <span class="n">IndepVarComp</span>
+
+<span class="kn">from</span> <span class="nn">ozone.api</span> <span class="kn">import</span> <span class="n">ODEIntegrator</span>
+<span class="kn">from</span> <span class="nn">ozone.doc_tests.ode_functions.getting_started_ode_function</span> \
+    <span class="kn">import</span> <span class="n">GettingStartedODEFunction</span>
+
+<span class="n">ode_function</span> <span class="o">=</span> <span class="n">GettingStartedODEFunction</span><span class="p">()</span>
+<span class="n">formulation</span> <span class="o">=</span> <span class="s1">&#39;solver-based&#39;</span>
+<span class="n">method_name</span> <span class="o">=</span> <span class="s1">&#39;RK4&#39;</span>
+<span class="n">initial_conditions</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">}</span>
+
+<span class="c1"># Only normalized_times is passed in</span>
+<span class="n">normalized_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+
+<span class="n">integrator</span> <span class="o">=</span> <span class="n">ODEIntegrator</span><span class="p">(</span><span class="n">ode_function</span><span class="p">,</span> <span class="n">formulation</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span>
+    <span class="n">normalized_times</span><span class="o">=</span><span class="n">normalized_times</span><span class="p">,</span> <span class="n">initial_conditions</span><span class="o">=</span><span class="n">initial_conditions</span><span class="p">)</span>
+
+<span class="c1"># Below, initial_time and final_time are connected from external components.</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="n">Problem</span><span class="p">()</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">add_subsystem</span><span class="p">(</span><span class="s1">&#39;initial_time_comp&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;initial_time&#39;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">))</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">add_subsystem</span><span class="p">(</span><span class="s1">&#39;final_time_comp&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;final_time&#39;</span><span class="p">,</span> <span class="mf">3.</span><span class="p">))</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">add_subsystem</span><span class="p">(</span><span class="s1">&#39;integrator_group&#39;</span><span class="p">,</span> <span class="n">integrator</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;initial_time_comp.initial_time&#39;</span><span class="p">,</span> <span class="s1">&#39;integrator_group.initial_time&#39;</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;final_time_comp.final_time&#39;</span><span class="p">,</span> <span class="s1">&#39;integrator_group.final_time&#39;</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">check</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">prob</span><span class="o">.</span><span class="n">run_model</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prob</span><span class="p">[</span><span class="s1">&#39;integrator_group.times&#39;</span><span class="p">],</span> <span class="n">prob</span><span class="p">[</span><span class="s1">&#39;integrator_group.state:y&#39;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../../_images/specifying_times.png"><img alt="../../../_images/specifying_times.png" src="../../../_images/specifying_times.png" style="width: 512.0px; height: 384.0px;" /></a>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="specifying_ics.html" title="Specifying initial conditions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../basics/ode_integrator.html" title="API for ODEIntegrator"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">ozone 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, John T. Hwang.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
+    </div>
+  </body>
+</html>
